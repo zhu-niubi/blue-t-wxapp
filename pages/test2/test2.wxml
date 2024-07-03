@@ -1,0 +1,11 @@
+<view style="display: flex;height: 100%;flex-direction: column;">
+    <view style="height: 200px;display: flex;flex-direction: column-reverse;">
+      <input bindinput="bindKeyInput" style="border: 1px solid red;"/>
+    </view>
+    <view style="display: flex;width: 100%;height: 200px;justify-content: center;align-items: center;">
+    <button bind:tap="print">查找蓝牙</button>
+    <button bind:tap="connectBlueBooth">连接蓝牙</button>
+    </view>
+
+
+</view>

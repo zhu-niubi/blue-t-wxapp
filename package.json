@@ -1,0 +1,17 @@
+{
+  "name": "wms-wxapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "buffer": "^6.0.3",
+    "iconv-lite": "^0.6.3",
+    "miniprogram-table-component": "^1.1.0",
+    "string_decoder": "^1.3.0"
+  }
+}

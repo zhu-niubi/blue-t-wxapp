@@ -1,0 +1,19 @@
+<page-meta root-font-size="system"/>
+<view class="page" data-weui-theme="{{theme}}" data-weui-mode="{{mode}}">
+	<view class="weui-msg">
+		<view class="weui-msg__icon-area"><text class="weui-icon-success weui-icon_msg"></text></view>
+		<view class="weui-msg__text-area">
+			<view class="weui-msg__title">当前已盘点列表</view>
+			<view class="weui-msg__custom-area">
+                <view class="weui-form-preview__list">
+					<view class="weui-form-preview__item" aria-role="option"><label class="weui-form-preview__label">卷芯码</label><view class="weui-form-preview__value">87987898978</view></view>
+					<view class="weui-form-preview__item" aria-role="option"><label class="weui-form-preview__label">盘点人</label><view class="weui-form-preview__value">赖将铭</view></view>
+                    <view class="weui-form-preview__item" aria-role="option"><label class="weui-form-preview__label">品牌系列</label><view class="weui-form-preview__value">潮流风尚</view></view>
+                    <view class="weui-form-preview__item" aria-role="option"><label class="weui-form-preview__label">品牌名称</label><view class="weui-form-preview__value">ASLF</view></view>
+                    <view class="weui-form-preview__item" aria-role="option"><label class="weui-form-preview__label">产品型号</label><view class="weui-form-preview__value">奥伯龙黑ALH-56——A级</view></view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+</view>

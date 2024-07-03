@@ -1,0 +1,179 @@
+/* pages/depositOrder/depositOrder.wxss */
+.page {
+	width: 100%;
+	/*  */
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.page .personArea {
+	width: 90%;margin-bottom: 20px;
+}
+
+
+.xtitle {
+	margin-left: 2.5%;
+	font-size: 30rpx;
+	font-weight: bold;
+}
+.page .productArea {
+	width: 86%;
+	/*  */
+	display: flex;
+	flex-direction: column;
+}
+.productArea .title {
+	font-size: 30rpx;
+	font-weight: bold;
+}
+
+
+.productArea .productDoc {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	margin-top: 60rpx;
+	
+}
+
+.productDoc .brandName {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+
+	
+}
+
+.brandName .input {
+	width: 60%;height: 30px; background-color: #fff;border-radius: 20rpx;padding:0 4px;width: 70%;
+	margin-left: 10%;
+}
+
+.productDoc .goodsName {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	/* border: solid; */
+	
+}
+.goodsName .input {
+	width: 70%;background-color: #fff;border-radius: 20rpx;padding:0 4px;font-size: 24rpx;
+	margin-left: 10%;
+	height: 30px;
+}
+.productDoc .goodsGrade {
+	width: 40%;
+	margin-top: 30rpx;
+	
+}
+.goodsGrade .input {
+	width: 100%;background-color: #fff;border-radius: 20rpx;padding:0 1px;
+	height: 30px;
+}
+.productDoc .goodsWidth {
+	width: 24%;	
+	margin-top: 30rpx;
+}
+
+.goodsWidth .input {
+	width: 100%;background-color: #fff;border-radius: 20rpx;padding:0 1px;
+	height: 30px;
+}
+.productDoc .goodsHeight {
+	margin-left: 8%;
+	width: 26%;	
+	margin-top: 30rpx;
+}
+.goodsHeight .input {
+	width: 96%;background-color: #fff;border-radius: 20rpx;padding:0 1px;
+	height: 30px;
+}
+.brandName .title {
+	font-weight: normal;
+	font-size: 25rpx;
+}
+
+.goodsName .title {
+	font-weight: normal;
+	font-size: 25rpx;
+}
+
+.goodsGrade .title {
+	font-weight: normal;
+	font-size: 25rpx;
+}
+.goodsWidth .title {
+	font-weight: normal;
+	font-size: 25rpx;
+}
+
+.goodsHeight .title {
+	font-weight: normal;
+	font-size: 25rpx;
+}
+
+
+.productDoc .rollArea {
+	margin-top: 60rpx;
+	width: 100%;
+	/* border: solid; */
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+
+.rollArea .rollInput {
+	width: 50%;
+	/* border: yellow solid; */
+	background-color: #fff;
+	border-radius: 40rpx;
+	height: 70rpx;
+	padding: 0 10px;
+	font-size: 28rpx;
+}
+
+.rollArea .img {
+	width: 56rpx; height: 56rpx;
+}
+
+.rollArea .btn {
+	height: 60rpx; width: 120rpx; margin-left:20rpx; font-size: 28rpx;	border-radius: 30rpx;
+}
+
+
+.page .tableArea {
+	margin-top: 180rpx;
+	width: 88%;
+	/* border: solid; */
+
+}
+.tableArea .title {
+	font-size: 30rpx;
+	font-weight: bold;
+}
+
+.tableArea .table {
+	width: 100%;
+	/* border: solid; */
+}
+
+.table .cell {
+	font-size: 20rpx;
+}
+.table .header {
+	font-size: 20rpx;
+	color: #000;
+}
+
+.page .submitAll {
+	margin-top: 50rpx;
+	width: 100%;
+	/* border: solid; */
+}

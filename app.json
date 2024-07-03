@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/inventory/inventory",
+    "pages/inventorydetatil/inventorydetatil",
+    "pages/inventorydetatil/invertoryHistry",
+    "pages/depositOrder/depositOrder",
+    
+
+    
+    "pages/test/test",
+    "pages/test2/test2"
+
+  ],
+
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#EDEDED",
+    "backgroundColor": "#EDEDED"
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "requiredPrivateInfos":[
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于后台定位盘点位置"
+    }
+  },
+  "style": "v2",
+  "debug": true
+}

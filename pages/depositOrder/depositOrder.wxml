@@ -1,0 +1,176 @@
+<view class="page">
+	<view class="personArea">
+		<view class="" id="searchBar" style="display: flex;flex-direction: row;">
+			<view class="xtitle">缴库人员*</view>
+			<form 
+				class=""
+				style="width: 68%;margin-left: 7%;background-color: #fff;border-radius: 20rpx;" 
+				aria-role="combobox" 
+				aria-haspopup="true" 
+				aria-expanded="{{inputVal.length > 0 ? 'true' : 'false'}}" 
+				aria-owns="searchResult">
+				<view class="" style="height: 30px;display: flex;align-items: center;padding: 0 4px;width: 70%;">
+					<!-- <i class="weui-icon-search"></i> -->
+					<input 
+						aria-controls="searchResult" 
+						type="text" 
+						class="weui-search-bar__input" 
+						placeholder="" 
+						value="{{inputVal}}"
+						bindinput="inputTyping"
+					/>
+					<view aria-role="button" aria-label="清除" class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput"></view>
+				</view>
+				
+			</form>
+		</view>
+		<view aria-role="listbox" style="border-radius: 20rpx;"  class="weui-cells searchbar-result" wx:if="{{filteredPersons.length > 0}}">
+			<view role="option"  class="weui-cell weui-cell_active weui-cell_access" wx:for="{{filteredPersons}}" wx:key="cPersonCode"
+			data-personid="{{item.cPersonCode}}" 
+			data-operator="{{item.cPersonName}}" 
+			bindtap="selectPerson"
+			>
+				<view 
+					class="weui-cell__bd weui-cell_primary" 
+					>
+					<view>{{item.cPersonName}}</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+
+	<view class="productArea">
+	
+		<view class="title">
+			缴库存货
+		</view>
+		<view class="productDoc">
+
+			<view class="brandName">
+				<view style="display: flex;flex-direction: row;">
+					<view class="title">
+					品牌型号*
+					</view>
+					<input
+						class="input"
+						value="{{brandVal}}"
+						bindinput="inputBrand" 
+						disabled="{{brandInput}}"
+					/>
+				</view>
+				<view aria-role="listbox"  class="weui-cells searchbar-result" style="border-radius: 20rpx;" wx:if="{{filteredBrands.length > 0}}">
+					<view role="option"  class="weui-cell weui-cell_active weui-cell_access" wx:for="{{filteredBrands}}" wx:key="index"
+					data-label="{{item.name}}" 
+					data-title="{{item.title}}" 
+					data-value="{{item.uuid}}"
+					bindtap="selectBrand"
+					>
+						<view 
+							class="weui-cell__bd weui-cell_primary" 
+							>
+							<view>{{item.title}}</view>
+						</view>
+					</view>
+				</view>
+				
+
+			</view>
+			<view class="goodsName">
+				<view style="display: flex;flex-direction: row;">
+					<view class="title">
+					产品型号*
+					</view>
+					<input
+						class="input"
+						value="{{seriesGoodsVal}}"
+						bindinput="inputSG" 
+						disabled="{{goodsInput}}"
+					/>
+				</view>
+				<view aria-role="listbox"  class="weui-cells searchbar-result" style="border-radius: 20rpx;" wx:if="{{filteredSeriesGoods.length > 0}}">
+					<view role="option"  class="weui-cell weui-cell_active weui-cell_access" 
+					wx:for="{{filteredSeriesGoods}}" wx:key="index"
+					data-goods_uuid="{{item.uuid}}" 
+					data-product_name="{{item.name}}"
+					data-wms_brand_series = "{{item.wms_brand_series}}" 
+					bindtap="selectSeriesGoods"
+					>
+						<view 
+							class="weui-cell__bd weui-cell_primary" 
+							>
+							<view style="font-size: 30rpx;">{{item.name}}_<span style="font-size: 20rpx;">{{item.wms_brand_series.name}}</span></view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="goodsGrade">
+				<view class="title">
+					产品等级*
+				</view>
+				<view class="radioArea" style="width: 100%">
+					<radio-group bindchange="gradeChange" style="display: flex;flex-direction: row;">
+						<label wx:for="{{gradeList}}" wx:key="index" style="display: flex;flex-direction: row;">
+							<radio  value="{{item.value}}" checked="{{item.checked}}"/><view >{{item.name}}</view>
+						</label>
+					</radio-group>
+				</view>
+			</view>
+			<view class="goodsWidth">
+				<view class="title">
+					宽度(M)*
+				</view>
+				<input
+					class="input"
+					value="{{formData.width}}"
+					bindinput="inputWidth"
+				/>
+			</view>
+			<view class="goodsHeight">
+				<view class="title">
+					长度(M)*
+				</view>
+				<input
+					class="input"
+					value="{{formData.height}}"
+					bindinput="inputHeight"
+				/>
+			</view>
+			<view class="rollArea">
+				<view style="width: 15%;">
+					卷号*
+				</view>
+			   
+				<image src="../../images/qr.png" class="img" bindtap="scanCode"/>
+				<input class="rollInput" value="{{rollVal}}" bindinput="inputRoll"/>
+				
+				<button size="mini" type="primary" class="btn" bindtap="onSubmit">提交</button>
+			</view>
+
+		</view>
+	</view>
+
+
+	<view class="tableArea">
+		<view class="title">
+			待缴库信息：{{row.length}}件
+		</view>
+		<view class="table">
+			<table-view 
+				headers="{{tableHeader}}" 
+				data="{{ row }}" 
+				stripe="{{ stripe }}"
+				border="{{ border }}"
+				msg="{{msg}}"
+				cell-class-name="cell"
+				header-row-class-name="header"
+				bind:rowClick="delRow"
+			/>
+		</view>
+	</view>
+
+	<view class="submitAll" wx:if="{{submitAll}}">
+		<button size="" type="primary"  bindtap="submitAll">一键缴库</button>
+	</view>
+
+</view>

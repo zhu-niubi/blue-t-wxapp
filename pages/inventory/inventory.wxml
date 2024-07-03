@@ -1,0 +1,32 @@
+<view class="page">
+    <view class="page__hd">
+        <view aria-role="heading" aria-level="1" class="page__title">盘点单列表</view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+        <view class="kind-list">
+            <block wx:for="{{inventoryList}}" wx:for-item="item1" wx:key="index">
+                <view class="kind-list__item" wx:if="{{item1.state == 0 || item1.state == 1}}">
+
+                <!-- <view class="kind-list__item" > -->
+                    <view class="weui-flex kind-list__item-hd">
+                        <view class="weui-flex__item">
+                            <!-- <view class="page__title">品牌名称:{{item1.wms_brand.name}}</view> -->
+                            <!-- <view class="page__desc">制单人:{{item1.operator_name}}</view> -->
+                            <view class="page__title">盘点说明:{{item1.title}}</view>
+                            <view class="page__desc">制单时间:{{item1.dateDay}}</view>
+                            
+                            <view class="page__desc">盘点状态:{{item1.state == 0 ? '未盘点' : item1.state == 1 ? '盘点中' : item1.state == 2 ? '已盘点' : item1.state == 3 ? '已缴库' : ''}}</view>
+                        </view>
+
+                        <button size="mini" id="{{item1.uuid}}" bindtap="gotoInventorydetatil">进入盘点</button>
+
+                    </view>
+
+                </view>
+            </block>
+        </view>
+    </view>
+
+
+
+</view>

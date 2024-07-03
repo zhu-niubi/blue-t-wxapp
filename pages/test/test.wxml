@@ -1,0 +1,12 @@
+<!--packageA/blueTooth/blueTooth.wxml-->
+<view class="main">
+    <van-button type="default" bindtap="searchBlue" 
+        style="margin-top: 400rpx;background-color: aliceblue;">搜索并连接打印机蓝牙</van-button>
+    <view style="width: 100%;height: 30vh;border: solid">
+        
+    </view>
+
+    <!-- <van-button type="primary">连接蓝牙</van-button> -->
+    <!-- <van-button type="info">关闭搜索</van-button> -->
+
+</view>

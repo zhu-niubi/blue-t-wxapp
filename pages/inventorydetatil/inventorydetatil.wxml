@@ -1,0 +1,238 @@
+<!--pages/inventorydetatil/inventorydetatil.wxml-->
+<view class="page">
+    <view class="weui-btn" style="color: #000;" bindtap="addInfo">
+        <image aria-role="button" src="/images/qr.png" style="height: 100rpx;width: 100rpx;"></image>
+    </view>
+    <view class="weui-steps_horizonal-center weui-flex">
+        <view class="page__title weui-flex__item cen">
+            {{nowBrandVal ? nowBrandVal : inventoryDetail.wms_brand.name}}
+            <view class="page__desc">产品品牌</view>
+        </view>
+
+        <view class="page__title weui-flex__item cen">
+            {{inventoryDetail.operator_name}}
+            <view class="page__desc">制单人</view>
+        </view>
+        <view class="page__title weui-flex__item cen">
+            {{inventoryDetail.title}}
+            <view class="page__desc">盘点说明</view>
+        </view>
+    </view>
+
+    <view class="page__hd padding_hd">
+        <view class="weui-flex" bindtap="gotoHistry">
+            <view class="page__desc">查看历史盘点记录</view>
+            <view class="weui-flex__item page__desc center">
+            </view>
+            <image aria-role="button" src="/images/goin.png" class="icon_size"></image>
+        </view>
+        <view aria-role="listbox" id="searchResult2" class="weui-cells searchbar-result" wx:if="{{histry}}">
+            <view role="option" class="weui-cell weui-cell_active weui-cell_access" wx:for="{{hisArr}}" wx:key="index">
+                <view class="weui-msg__custom-area" style="display: flex;flex-direction: row;width: 100%;">
+                    <view class="weui-form-preview__item " aria-role="option">
+                        <label class="weui-form-preview__label">卷芯码</label>
+                        <view class="weui-form-preview__value">{{item.rollId}}</view>
+                        <label class="weui-form-preview__label">涂布批次</label>
+                        <view class="weui-form-preview__value">{{item.product_batch}}</view>
+                        <label class="weui-form-preview__label">品牌名称</label>
+                        <view class="weui-form-preview__value">{{item.brand_name}}</view>
+                        <label class="weui-form-preview__label">产品型号</label>
+                        <view class="weui-form-preview__value">{{item.goodsName}}</view>
+                    </view>
+                    <!-- <view class="page__desc" bindtap="print"
+                            data-uuid="{{item.uuid}}"data-brandname="{{item.brand_name}}" 
+                            data-goodsname="{{item.goodsName}}" data-productbatch="{{item.product_batch}}" 
+                            data-rollid="{{item.rollId}}"
+                            style="display: flex;justify-content: center;margin-top: 133rpx;margin-left: 70rpx;"
+                        >再次打印</view> -->
+                    <button style="height: 50%;" size="mini" bindtap="print" data-uuid="{{item.uuid}}" data-brandname="{{item.brand_name}}" data-goodsname="{{item.goodsName}}" data-productbatch="{{item.product_batch}}" data-rollid="{{item.rollId}}"><span class="page__desc" style="color: #000;">再次打印</span></button>
+
+
+                </view>
+            </view>
+
+        </view>
+        <picker bindchange="bindPickerChangeTodo" value="{{todoIndex}}" range="{{todoPersonName}}" wx:if="{{todoPersonName.length > 0}}">
+            <view class="picker weui-flex weui-cen">
+                <view class="page__desc weui-width">当前操作人:</view>
+                <view class="weui-flex__item page__desc">
+                    {{todoPersonName[todoIndex]}}
+                </view>
+                <image aria-role="button" src="/images/goin.png" class="icon_size"></image>
+            </view>
+        </picker>
+        <picker bindchange="bindPickerChangeTodo" value="{{todoIndex}}" range="{{todoAllPerName}}" wx:if="{{todoPersonName.length === 0}}">
+            <view class="picker weui-flex">
+                <view class="page__desc weui-width">当前操作人:</view>
+                <view class="weui-flex__item page__desc">
+                    {{todoAllPerName[todoIndex]}}
+                </view>
+                <image aria-role="button" src="/images/goin.png" class="icon_size"></image>
+
+            </view>
+        </picker>
+
+        <!-- <picker bindchange="bindPickerChangeBrand" value="{{brandIndex}}" range="{{brandsName}}">
+            <view class="picker weui-flex">
+                <view class="page__desc weui-width">品牌名称:</view>
+                <view class="weui-flex__item page__desc">
+                    {{brandsName[brandIndex]}}
+                </view>
+                <image aria-role="button" src="/images/goin.png" class="icon_size"></image>
+
+            </view>
+        </picker> -->
+
+
+
+    </view>
+    <!-- <view class="page__desc">
+        <view class="weui-search-bar weui-search-bar_focusing">
+            品牌系列:
+            <form class="weui-search-bar__form" aria-role="combobox" aria-haspopup="true" aria-expanded="{{inputBser.length > 0 ? 'true' : 'false'}}" aria-owns="searchResult3">
+                <view class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input aria-controls="searchResult3" type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputBser}}" bindinput="inputTyping1" />
+                    <view aria-role="button" aria-label="清除" class="weui-icon-clear" wx:if="{{inputBser.length > 0}}" bindtap="clearInput1"></view>
+                </view>
+            </form>
+        </view>
+        <view aria-role="listbox" id="searchResult3" class="weui-cells searchbar-result" wx:if="{{filteredBrandsSer.length > 0 && (inputTyping1 == true)}}" wx:for="{{filteredBrandsSer}}" wx:key="index">
+            <view role="option" class="weui-cell weui-cell_active weui-cell_access" data-name="{{item.name}}" data-uuid="{{item.uuid}}" bindtap="selectbrandSer">
+                <view class="weui-cell__bd weui-cell_primary">
+                    <view>{{item.name}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="page__desc">
+        <view class="weui-search-bar weui-search-bar_focusing">
+            产品型号:
+            <form class="weui-search-bar__form" aria-role="combobox" aria-haspopup="true" aria-expanded="{{inputVal.length > 0 ? 'true' : 'false'}}" aria-owns="searchResult4">
+                <view class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input aria-controls="searchResult4" type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" bindinput="inputTyping" />
+                    <view aria-role="button" aria-label="清除" class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput"></view>
+                </view>
+            </form>
+        </view>
+        <view aria-role="listbox" id="searchResult4" class="weui-cells searchbar-result" wx:if="{{inputfilteredGoods.length > 0 &&inputTyping}}" wx:for="{{inputfilteredGoods}}" wx:key="index">
+            <view role="option" class="weui-cell weui-cell_active weui-cell_access" data-name="{{item.name}}" data-uuid="{{item.uuid}}" bindtap="selectGood">
+                <view class="weui-cell__bd weui-cell_primary">
+                    <view>{{item.name}}</view>
+                </view>
+            </view>
+        </view>
+    </view> -->
+    <!-- 所有型号模糊搜索 -->
+    <view class="page__desc">
+        <view class="weui-search-bar weui-search-bar_focusing">
+            产品型号:
+            <form class="weui-search-bar__form" aria-role="combobox" aria-haspopup="true" aria-expanded="{{inputAllGoods.length > 0 ? 'true' : 'false'}}" aria-owns="searchResult4">
+                <view class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input aria-controls="searchResult4" type="text" class="weui-search-bar__input" placeholder="搜索" value="{{inputAllGoods}}" bindinput="inputTypeAll" />
+                    <view aria-role="button" aria-label="清除" class="weui-icon-clear" wx:if="{{inputAllGoods.length > 0}}" bindtap="clearInput2"></view>
+                </view>
+            </form>
+        </view>
+        <view aria-role="listbox" id="searchResult4" class="weui-cells searchbar-result" wx:if="{{inputfilteredAllGoods.length > 0 &&inputTypeAll}}" wx:for="{{inputfilteredAllGoods}}" wx:key="index">
+            <view role="option" class="weui-cell weui-cell_active weui-cell_access" 
+            data-name="{{item.name}}" data-uuid="{{item.uuid}}" 
+            data-brandser="{{item.wms_brand_series}}"
+            data-brand="{{item.wms_brand}}"
+
+            bindtap="selectAllGood">
+                <view class="weui-cell__bd weui-cell_primary">
+                    <view>{{item.name}}<span class="page__desc" style="font-size: 17rpx;">({{item.wms_brand.name}}-{{item.wms_brand_series.name}})</span></view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="margin">
+        <view class="page__desc">
+            产品等级:
+            <radio-group bindchange="radioChange" style="display: flex;flex-direction: row;">
+                <label wx:for="{{items}}" wx:key="index" style="display: flex; flex-direction: row;width:20%;">
+                    <view>
+                        <radio value="{{item.value}}" checked="{{item.checked}}" disabled="{{pros.length !== 0}}" />
+                    </view>
+                    <view>{{item.name}}</view>
+                </label>
+            </radio-group>
+        </view>
+
+        <view class="page__desc">
+            产品宽度(mm)
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <input disabled="{{pros.length !== 0}}" class="weui-input" value="{{form.width || ''}}" type="number" bindblur="bindwidth" placeholder="请输入产品宽度" />
+                </view>
+            </view>
+
+        </view>
+
+        <view class="page__desc">
+            产品长度(M)
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <input disabled="{{pros.length !== 0}}" class="weui-input" value="{{form.height || ''}}" type="number" bindblur="bindheight" placeholder="请输入产品长度" />
+                </view>
+            </view>
+        </view>
+
+        <view class="page__desc">
+            备注
+            <view class="weui-cells weui-cells_after-title">
+                <view class="weui-cell weui-cell_input">
+                    <input disabled="{{pros.length !== 0}}" class="weui-input" bindblur="bindremark" placeholder="请输入备注" />
+                </view>
+            </view>
+        </view>
+
+    </view>
+
+    <view wx:if="{{pros.length === 0}}" class="weui-search-bar weui-search-bar_focusing" id="searchBar">
+        <form class="weui-search-bar__form" aria-role="combobox" aria-haspopup="true" aria-expanded="{{inputValue.length > 0 ? 'true' : 'false'}}" aria-owns="searchResult1">
+            <view class="weui-search-bar__box">
+                <view style="width: 12%;">
+                    <image src="../../images/qr.png" style="height: 50rpx;width: 50rpx;" bindtap="{{!isLocation ? 'scanCode' : ''}}"></image>
+
+                </view>
+                <input aria-controls="searchResult1" type="text" class="weui-search-bar__input" placeholder="{{!isLocation ? '请扫码或者手动输入' :  msg}}" value="{{inputValue}}" bindblur="bindKeyInput" disabled="{{isLocation}}" />
+                <view aria-role="button" aria-label="清除" class="weui-icon-clear" wx:if="{{inputValue.length > 0}}" bindtap="clearInputNum"></view>
+            </view>
+        </form>
+        <view aria-role="button" class="weui-search-bar__cancel-btn" bindtap="addTo">添加</view>
+    </view>
+    <!-- <view wx:if="{{pros.length === 0}}" aria-role="button " class="weui-btn weui-btn_default" bindtap="scanCode">扫描添加膜卷</view> -->
+
+    <view class="margin">
+        <view wx:for="{{form.stocks}}" wx:key="index" class="center">
+            <view><span>{{pros.length > 0 ? '待盘点卷芯号：' : (index+1)+'_卷芯号：'}}</span>{{item.rollId}}</view>
+            <view wx:if="{{pros.length === 0}}">
+                <button size="mini" bindtap="del" data-index="{{index}}">删除</button>
+            </view>
+        </view>
+    </view>
+
+    <view class="padding-bottom">
+        <view wx:if="{{pros.length === 0}}" aria-role="button" class="weui-btn weui-btn_overlay" bindtap="submit">提交</view>
+    </view>
+    <view class="page__desc" wx:if="{{pros.length !== 0}}">
+        待打印：{{pros.length}}
+        已打印：{{hisArr.length}}
+    </view>
+    <view class="center padding-bottom" wx:for="{{pros}}" wx:key="index">
+        <view class="page__desc">
+            <span style="color: #07C160;">{{item.brand_name}}-{{item.goodsName}}</span>;<span style="font-weight: bold;">{{item.rollId}}</span>
+        </view>
+        <view>
+            <button size="mini" data-uuid="{{item.uuid}}" data-brandname="{{item.brand_name}}" data-goodsname="{{item.goodsName}}" data-productbatch="{{item.product_batch}}" data-rollId="{{item.rollId}}" bindtap="print">打印</button>
+        </view>
+    </view>
+
+
+
+</view>

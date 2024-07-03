@@ -1,0 +1,22 @@
+# 忽略文件：
+*.log
+*.cache
+*.diff
+*.patch
+*.swp
+*.DS_Store
+*.tmp
+
+# 忽略目录：
+/node_modules/
+/miniprogram_npm/
+/build/
+/dist/
+/out/
+/.vscode/
+/.idea/
+
+# 忽略特定文件：
+package-lock.json
+.env
+.DS_Store
